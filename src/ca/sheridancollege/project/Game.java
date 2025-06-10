@@ -1,58 +1,42 @@
-/**
- * SYST 17796 Project Base code.
- * Students can modify and extend to implement their game.
- * Add your name as an author and the date!
- */
 package ca.sheridancollege.project;
 
 import java.util.ArrayList;
 
 /**
- * The class that models your game. You should create a more specific child of this class and instantiate the methods
- * given.
- *
+ * The base Game class meant to be extended by specific games like War.
+ * It contains a list of players and defines the structure for playing a game and declaring a winner.
+ * 
  * @author dancye
- * @author Paul Bonenfant Jan 2020
  */
 public abstract class Game {
+    
+    protected ArrayList<Player> players; // The players in the game
+    private String name; // The name of the game
 
-    private final String name;//the title of the game
-    private ArrayList<Player> players;// the players of the game
-
+    // Constructor
     public Game(String name) {
         this.name = name;
-        players = new ArrayList();
+        this.players = new ArrayList<>();
     }
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
+    // Adds a player to the game
+    public void addPlayer(Player player) {
+        players.add(player);
     }
 
-    /**
-     * @return the players of this game
-     */
+    // Gets the list of players
     public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    /**
-     * @param players the players of this game
-     */
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
+    // Gets the name of the game
+    public String getName() {
+        return name;
     }
 
-    /**
-     * Play the game. This might be one method or many method calls depending on your game.
-     */
+    // Abstract method to be implemented by subclasses
     public abstract void play();
 
-    /**
-     * When the game is over, use this method to declare and display a winning player.
-     */
-    public abstract void declareWinner();
-
-}//end class
+    // Abstract method to declare a winner
+    public abstract String declareWinner();
+}
